@@ -1,4 +1,4 @@
-# nbdev template
+# AnDi challenge
 
-Use this template to more easily create your nbdev project.
+[AnDi challenge](https://competitions.codalab.org/competitions/23601) contribution of the Anomalous Unicorns team!
 
