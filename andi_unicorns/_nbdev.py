@@ -2,14 +2,23 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"acquire_data": "00_data.ipynb",
+index = {"DATA_PATH": "00_data.ipynb",
+         "acquire_data": "00_data.ipynb",
+         "rmtree": "00_data.ipynb",
+         "load_custom_data": "00_data.ipynb",
          "load_data": "00_data.ipynb",
+         "get_custom_dls": "00_data.ipynb",
          "get_discriminative_dls": "00_data.ipynb",
+         "get_validation_dl": "00_data.ipynb",
          "pad_trajectories": "00_data.ipynb",
+         "create_custom_dataset": "00_data.ipynb",
+         "cut_trajectory": "00_data.ipynb",
+         "validate_task": "00_data.ipynb",
+         "validate_model": "00_data.ipynb",
          "MeanPredict": "01_models.ipynb",
          "SimpleLSTM": "01_models.ipynb",
          "ConcatPoolLSTM": "01_models.ipynb",
-         "mask_concat_pool": "01_models.ipynb",
+         "RegLSTMLin": "01_models.ipynb",
          "RegLSTM": "01_models.ipynb",
          "PoolingClassifier": "01_models.ipynb"}
 
