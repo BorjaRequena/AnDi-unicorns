@@ -62,13 +62,14 @@ class RegLSTMLin(Module):
         if ps is None: ps = [0.1]*len(linear_layers)
         ps = [out_ps] + ps
         self.linear = PoolingClassifier(lin_dim, ps=ps, yrange=yrange)
+        self.blocks = [self.rnn, self.linear]
 
     def forward(self, x):
         mask = x == self.pad_value
         x = mask_normalisation(x, mask)
         out = self.rnn(x)
-        x, _, _ = self.linear((out, mask))
-        return x
+        x, out, out = self.linear((out, mask))
+        return x, out, out
 
 class RegLSTM(Module):
     "LSTM with regularization and inter-layer dropout."

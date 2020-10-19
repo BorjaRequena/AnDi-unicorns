@@ -155,7 +155,6 @@ def get_discriminative_dls(task, dim=1, bs=64, split_pct=0.2, ds='train', **kwar
     sorted_dl = partial(SortedDL, before_batch=partial(pad_trajectories, **kwargs), shuffle=True)
     return DataLoaders.from_dsets(train_ds, val_ds, bs=bs, dl_type=sorted_dl, device=default_device())
 
-
 def get_validation_dl(task, dim=1, bs=64, **kwargs):
     "Obtain `DataLoaders` for validation."
     data = load_data(task, dim=dim, ds='val')
