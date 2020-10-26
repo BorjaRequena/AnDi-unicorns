@@ -136,7 +136,7 @@ def _txt2df(task, ds=['train', 'val']):
 def get_custom_dls(target='model', dim=1, models=None, exps=None, bs=128, split_pct=0.2, **kwargs):
     "Obtain `DataLoaders` from custom dataset filtered by `models` and `exps` to predict `target`."
     data = load_custom_data(dim=dim, models=models, exps=exps)
-    ds = L(zip(data['x'], data[target]))
+    ds = L(zip(data['x'], data[target])) if target is 'exp' else L(zip(data['x'], data[target].astype(int)))
     idx = L(int(i) for i in torch.randperm(data.shape[0]))
     cut = int(data.shape[0]*split_pct)
 
@@ -147,7 +147,7 @@ def get_custom_dls(target='model', dim=1, models=None, exps=None, bs=128, split_
 def get_discriminative_dls(task, dim=1, bs=64, split_pct=0.2, ds='train', **kwargs):
     "Obtain `DataLoaders` for classification/regression models."
     data = load_data(task, dim=dim, ds=ds)
-    ds = L(zip(data['x'], data['y']))
+    ds = L(zip(data['x'], data['y'])) if task==1 else L(zip(data['x'], data['y'].astype(int)))
     idx = L(int(i) for i in torch.randperm(data.shape[0]))
     cut = int(data.shape[0]*split_pct)
 
@@ -233,7 +233,7 @@ def cut_trajectory(traj, t_cut, dim=1):
     return cut_traj.reshape(1, -1)
 
 # Cell
-def validate_task(models, task, dims, bs=256):
+def validate_task(models, task, dims, bs=256, act=False):
     "Validates `models` on task for `dims`."
     if not hasattr(models, '__iter__'): models = [models]
     if not hasattr(dims, '__iter__'): dims = [dims]
@@ -243,7 +243,7 @@ def validate_task(models, task, dims, bs=256):
     pred_path.mkdir(exist_ok=True)
     task_path = pred_path/f"task{task}.txt"
     preds_dim = []
-    for model, dim in zip(models, dims): preds_dim.append(validate_model(model, task, dim=dim, bs=bs))
+    for model, dim in zip(models, dims): preds_dim.append(validate_model(model, task, dim=dim, bs=bs, act=act))
 
     with open(task_path, "w") as f:
         for dim, preds in zip(dims, preds_dim):
@@ -251,7 +251,8 @@ def validate_task(models, task, dims, bs=256):
                 f.write(f"{int(dim)}; {str(pred.item())}\n")
 
 
-def validate_model(model, task, dim=1, bs=256):
+def validate_model(model, task, dim=1, bs=256, act=False):
     "Validates model on specific task and dimension."
     val_dl = get_validation_dl(task, dim=dim, bs=bs)
-    return torch.cat([model(batch).detach().cpu() for batch, _ in val_dl])
+    if act: return torch.cat([model(batch)[0].softmax(1).argmax(1).detach().cpu() for batch, _ in val_dl])
+    else:   return torch.cat([model(batch).detach().cpu() for batch, _ in val_dl])

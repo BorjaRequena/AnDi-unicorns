@@ -15,15 +15,31 @@ index = {"DATA_PATH": "00_data.ipynb",
          "cut_trajectory": "00_data.ipynb",
          "validate_task": "00_data.ipynb",
          "validate_model": "00_data.ipynb",
+         "mask_normalisation": "01_models.ipynb",
+         "mask_concat_pool": "01_models.ipynb",
+         "get_act": "01_models.ipynb",
+         "custom_splitter": "01_models.ipynb",
+         "custom_f1": "01_models.ipynb",
+         "MyLearner": "01_models.ipynb",
+         "RNNLearner": "01_models.ipynb",
          "MeanPredict": "01_models.ipynb",
+         "Classifier": "01_models.ipynb",
          "SimpleLSTM": "01_models.ipynb",
          "ConcatPoolLSTM": "01_models.ipynb",
          "RegLSTMLin": "01_models.ipynb",
          "RegLSTM": "01_models.ipynb",
-         "PoolingClassifier": "01_models.ipynb"}
+         "PoolingClassifier": "01_models.ipynb",
+         "CustomXResNet": "01_models.ipynb",
+         "CNNLin": "01_models.ipynb",
+         "CNN": "01_models.ipynb",
+         "RNNCNNClassifier": "02_prototypes.ipynb",
+         "save_model": "03_utils.ipynb",
+         "load_model": "03_utils.ipynb"}
 
 modules = ["data.py",
-           "models.py"]
+           "models.py",
+           "prototypes.py",
+           "utils.py"]
 
 doc_url = "https://BorjaRequena.github.io/andi_unicorns/"
 
