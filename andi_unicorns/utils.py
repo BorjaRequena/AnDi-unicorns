@@ -3,6 +3,11 @@
 __all__ = ['save_model', 'load_model']
 
 # Cell
+import pickle
+import torch
+from pathlib import Path
+
+# Cell
 def save_model(model, name):
     "Saves trained `model` with name `name`"
     path = Path(f"../models/{name}.pth")
