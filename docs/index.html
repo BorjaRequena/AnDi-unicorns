@@ -42,6 +42,14 @@ description: "Library with the prototyping process of the Anomalous Unicorns tea
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Installation">Installation<a class="anchor-link" href="#Installation"> </a></h2><p>In order to play with our prototypes, the package <code>andi_unicorns</code> must be installed. In order to do so, cone this repo and, then, considering a file structure like <code>whatever/path/AnDi-unicorns</code>, navigate to <code>whatever/path</code> and <code>pip install AnDi-unicorns</code>.</p>
+<p>In case of willing to make new models, install it in editable mode: <code>pip install -e AnDi-unicorns</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Brief-model-description">Brief model description<a class="anchor-link" href="#Brief-model-description"> </a></h2><p>We have taken the result of the classification for the regression task, so let us start with Task 2.</p>
 <p>For the classification we have leveraged convolutional neural networks (CNNs) and recurrent neural networks (RNNs) to perform the predictions. The predictors are made out of two feature extractors, a CNN and an RNN, that converge into a dense classifier consisting of two fully connected layers. We call this kind of architecture a Hydra, provided that there is one body (the classifier) and several heads that look into the data (the feature extractors). The resulting classifier is an ensemble of these hydras.</p>
 <p>Then, for the regression, we have taken a similar approach building a larger hydra. First, provided that the different diffusion models present quite significant behaviours, we have trained CNNs and RNNs to predict the anomalous exponent of specific diffusion models. With these models, we have built a twelve-head hydra: two feature extractors (CNN, RNN) for each of the five diffusion models and a pre-trained classifier hydra from the previous task. In a sense, the classifier at the end receives the information of each "expert network" together with the information of which one should be considered. The resulting regressor is an ensemble of these hydras.</p>

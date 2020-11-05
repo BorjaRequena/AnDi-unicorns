@@ -10,6 +10,12 @@ The prototyping has been done for the two first tasks of the challenge:
 
 Due to lack of time, we have only been able to train models for 1D trajectories and we have not been able to nail down a model for the third task. For further detail about the tasks, refer to the [official webpage](http://www.andi-challenge.org/) and the [paper](https://arxiv.org/pdf/2003.12036.pdf). 
 
+## Installation
+
+In order to play with our prototypes, the package `andi_unicorns` must be installed. In order to do so, cone this repo and, then, considering a file structure like `whatever/path/AnDi-unicorns`, navigate to `whatever/path` and `pip install AnDi-unicorns`. 
+
+In case of willing to make new models, install it in editable mode: `pip install -e AnDi-unicorns`.
+
 ## Brief model description
 
 We have taken the result of the classification for the regression task, so let us start with Task 2.
