@@ -7,6 +7,7 @@ import torch
 import numpy as np
 from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
+from tqdm.auto import tqdm
 
 # Cell
 def plot_conf_mat(model, dl, conf=None, fs=(7, 7)):

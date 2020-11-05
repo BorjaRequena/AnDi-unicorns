@@ -8,12 +8,12 @@ import torch
 from pathlib import Path
 
 # Cell
-def save_model(model, name):
+def save_model(model, name, path=None):
     "Saves trained `model` with name `name`"
-    path = Path(f"../models/{name}.pth")
+    path = Path(f"../models/{name}.pth") if path is None else Path(path)/name
     torch.save(model, path)
 
-def load_model(name):
+def load_model(name, path=None):
     "Loades pre-trained model wtih name `name`."
-    path = Path(f"../models/{name}.pth")
+    path = Path(f"../models/{name}.pth") if path is None else Path(path)/name
     return torch.load(path)
